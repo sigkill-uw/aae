@@ -20,7 +20,7 @@ CC = gcc
 SOURCE = main.c parse.c
 OBJECTS = $(SOURCE:.c=.o)
 OUTPUT = aae
-CFLAGS = -Wall -Wextra -Werror -O4 -std=c99 -pedantic -ggdb `sdl2-config --cflags --libs`
+CFLAGS = -Wall -Wextra -Werror -O4 -std=c99 -pedantic -ggdb `sdl2-config --cflags --libs` -lm
 
 .PHONY: all
 .PHONY: clean

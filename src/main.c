@@ -90,7 +90,7 @@ void callback(void *user, uint8_t *stream, int len)
 
 int main(int argc, char **argv)
 {
-	int i, j;
+	//int i, j;
 	FILE *input;
 	compiled_track_t track;
 
@@ -110,15 +110,15 @@ int main(int argc, char **argv)
 	track = parse_track(input);
 	fclose(input);
 
-	printf("Track has length %d\n\n", track.length);
-	for(i = 0; i < track.length; i ++)
+	printf("Track has length %d\n", track.length);
+	/*for(i = 0; i < track.length; i ++)
 	{
 		printf("Note %d has duration %Lf, %d tones\n", i + 1, track.notes[i].duration, track.notes[i].n_tones);
 		for(j = 0; j < track.notes[i].n_tones; j ++)
 			printf("%Lf\t", track.notes[i].tones[j]);
 
 		puts("\n");
-	}
+	}*/
 
 	if(SDL_Init(SDL_INIT_AUDIO) < 0)
 	{
@@ -137,6 +137,13 @@ int main(int argc, char **argv)
 	rate = have.freq;
 	fre = 440.0 / rate;
 
+	SDL_PauseAudioDevice(dev, 0);
+	puts("Track is playing. Press enter at any time to end and quit.");
+
+	getchar();
+
+	SDL_PauseAudioDevice(dev, 1);
+	SDL_Quit();
 	free_track(track);
 
 	SDL_Quit();
