@@ -125,8 +125,6 @@ int main(int argc, char **argv)
 		puts("failure");
 	}
 
-	printf("%d\n", SDL_GetNumAudioDevices(0));
-
 	want.freq = 48000;
 	want.format = AUDIO_S16SYS;
 	want.channels = 1;
@@ -138,12 +136,6 @@ int main(int argc, char **argv)
 
 	rate = have.freq;
 	fre = 440.0 / rate;
-
-	SDL_PauseAudioDevice(dev, 0);
-
-	getchar();
-
-	SDL_PauseAudioDevice(dev, 1);
 
 	free_track(track);
 
